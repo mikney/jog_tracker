@@ -10,6 +10,7 @@ const Header = ({setFiltered, setIsMenu, isMenu, isFiltered}) => {
     <header className={classname('header', {
       'header-menu': isMenu
     })}>
+      <div className=' header wrapper' >
       <div className='header__logo'>
         <svg xmlns="http://www.w3.org/2000/svg" width="146" height="56" viewBox="0 0 146 56">
           <g fill="#FFF" fillRule="evenodd">
@@ -50,6 +51,7 @@ const Header = ({setFiltered, setIsMenu, isMenu, isFiltered}) => {
         )
         : ''
       }
+      </div>
     </header>
   );
 };

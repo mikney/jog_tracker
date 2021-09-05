@@ -45,7 +45,7 @@ function App() {
 
 
   return (
-    <div className="wrapper">
+    <>
 
       <Header setIsMenu={setIsMenu} setFiltered={setFiltered} isFiltered={isFiltered} isMenu={isMenu} />
       {!isAuth ?
@@ -66,7 +66,7 @@ function App() {
         </Switch>
         }
 
-    </div>
+    </>
   );
 }
 
