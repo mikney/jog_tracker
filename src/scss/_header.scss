@@ -1,0 +1,126 @@
+@import "variables";
+
+
+.header {
+  background-color: $green;
+  height: 116px;
+  max-height: 116px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__logo {
+    margin-left: 37px;
+  }
+  &__nav {
+    display: flex;
+    align-items: center;
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin-right: 45px;
+      position: relative;
+      display: inline-block;
+      width: max-content;
+      &.selected {
+        &::after {
+          display: block;
+          content: '';
+          width: 105%;
+          height: 2px;
+          background-color: white;
+          position: absolute;
+          right: 50%;
+          bottom: -4px;
+          transform: translateX(50%);
+        }
+      }
+    }
+
+  }
+  &__menu {
+    display: none;
+  }
+  &__filter {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    width: 39px;
+    height: 39px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header {
+    $header:&;
+    height: 75px;
+    &__logo {
+      margin-left: 33px;
+      svg {
+      width: 108px;
+      height: 44px;
+    }
+    }
+    &__menu {
+      display: block;
+      margin-right: 32px;
+    }
+    &__nav {
+      nav {
+        display: none;
+      }
+    }
+    &__filter {
+
+    }
+    &-menu {
+      background-color: white;
+      #{$header} {
+
+        &__logo {
+
+          path {
+            fill: $green;
+          }
+        }
+        &__nav {
+          display: block;
+          nav {
+            position: fixed;
+            width: 100vw;
+            height: calc(100vh - #{$heightHeader});
+            background-color: white;
+            z-index: 1000;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            a {
+              color: #404040;
+              display: block;
+              margin: 0 0 34px;
+              font-size: 30px;
+              &:last-of-type {
+                margin-bottom:180px ;
+              }
+              &.selected {
+                color: $green;
+
+              }
+            }
+          }
+        }
+        &__menu {
+          svg {
+            path {
+              fill: #979797;
+            }
+          }
+        }
+      }
+    }
+  }
+}

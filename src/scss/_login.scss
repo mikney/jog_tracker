@@ -1,0 +1,60 @@
+@import "variables";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 116px);
+  &__bubble {
+    background-color:$purple;
+    width: 503px;
+    height: 379px;
+    border-radius: 44px;
+    padding: 77px 171px 36px 172px;
+    img {
+
+    }
+    &_button {
+      width: 151px;
+      height: 60px;
+      margin-top: 56px;
+      border-radius: 36px;
+      border: solid 3px #fff;
+      background-color: transparent;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+
+    &__bubble {
+      background-color: transparent;
+      width: auto;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      svg {
+        width: 200px;
+        height: 186px;
+      }
+      path {
+        fill: $purple;
+      }
+
+      &_button {
+        border-color: $purple;
+        color: $purple;
+        margin-top: 36px;
+      }
+    }
+
+  }
+}

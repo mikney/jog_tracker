@@ -1,0 +1,118 @@
+@import "variables";
+
+.jogs {
+
+  &__upload {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate3d(50%, 50%, 0);
+  }
+
+
+  &__filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    background-color: #eaeaea;
+    position: fixed;
+    z-index: 900;
+    width: 100%;
+    label {
+      font-size: 13px;
+      color: #979797;
+    }
+    input {
+      width: 100px;
+      height: 31px;
+      margin: 0 45px 0 15px;
+      border-radius: 11px;
+      border: solid 1px #979797;
+    }
+  }
+  &__list {
+    height: calc(100vh - 116px);
+    overflow: auto;
+    hr {
+      display: none;
+
+    }
+  }
+  &__list_empty {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate3d(50%, -50%, 0);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h2 {
+      margin-top: 47px;
+      font-size: 24px;
+      line-height: 1.21;
+      color: #b0b0b0;
+      width: max-content;
+    }
+  }
+  &__add {
+    cursor: pointer;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    $jogs__add: &;
+
+    button {
+      border: none;
+      background-color: transparent;
+    }
+    &-first {
+      top: 50%;
+      right: 50%;
+      transform: translate3d(50%, 50%, 0);
+      bottom: 0;
+      button {
+        width: 249px;
+        height: 60px;
+        border-radius: 36px;
+        border: solid 3px $purple;
+        color: $purple;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      }
+
+  }
+}
+.react-datepicker-wrapper {
+  width:  auto !important ;
+}
+
+
+@media screen and (max-width: 768px) {
+  .jogs {
+
+    &__filter {
+      input {
+        width: 75px;
+        margin: 0 20px 0 8px;
+      }
+    }
+    &__list {
+      height: calc(100vh - #{$heightHeader});
+      hr {
+        display: block;
+        margin: 0;
+        opacity: .3;
+
+      }
+    }
+
+    &__add {
+      bottom: 30px;
+      right: 30px;
+    }
+  }
+
+}

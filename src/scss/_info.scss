@@ -1,0 +1,37 @@
+@import "variables";
+
+.info {
+  &__title {
+    color: $green;
+    font-size: 36px;
+    width: 614px;
+    margin: 85px auto 15px;
+  }
+  &__text {
+    width: 614px;
+    height: 191px;
+    margin: 0 auto;
+    line-height: 1.71;
+    color: #a1a1a1;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .info {
+    height: calc(100vh - 75px);
+    overflow: auto;
+    &__title {
+      max-width: 90%;
+      font-size: 29px;
+      margin: 30px auto 10px;
+    }
+    &__text {
+      max-width: 90%;
+      margin-top: 10px;
+      height: auto;
+      font-size: 14px;
+
+    }
+  }
+}

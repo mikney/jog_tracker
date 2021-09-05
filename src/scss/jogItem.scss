@@ -1,0 +1,41 @@
+.jog-item {
+  $jog-item: &;
+  display: flex;
+  margin: 78px auto 0;
+  width: max-content;
+  cursor: pointer;
+  align-items: center;
+
+  &__icon {
+    width: 87px;
+    margin-right: 46px;
+  }
+  &_type {
+    font-weight: 500;
+    color: #252525;
+    font-size: 14px;
+  }
+  &_value {
+    color: #777777;
+  }
+  &_block {
+    margin-bottom: 12px;
+  }
+  &__info {
+    width: 150px;
+
+    color: #979797;
+
+    #{$jog-item}__date {
+      font-weight: normal;
+      margin-bottom: 9px;
+      color: #aea6a6;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .jog-item {
+    margin: 45px auto;
+  }
+}
