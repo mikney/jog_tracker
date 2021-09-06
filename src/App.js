@@ -9,7 +9,8 @@ import {getCurrentUser, logIn} from "./actions/user";
 import {setIsLogin} from "./reducers/userReducer";
 import Contacts from "./pages/Contacts";
 import Header from "./components/Header";
-
+import axios from "axios";
+import cookie from 'js-cookie'
 
 
 
@@ -29,9 +30,11 @@ function App() {
     dispatch(logIn())
   }
   useEffect(() => {
-    if(localStorage.getItem('token')) {
+    const token = cookie.get('token')
+    if(token) {
       dispatch(setIsLogin(true))
       dispatch(getCurrentUser())
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
   },[])
 
