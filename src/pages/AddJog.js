@@ -20,14 +20,13 @@ const AddJog = () => {
 
   useEffect(() => {
 
-
   }, [id])
 
 
   const changeJog = jogs.filter(obj => {
     return obj.id === +id
   })[0]
-
+  console.log(user_id)
   const initialValues= {
     id: id,
     user_id: user_id ? user_id : '' ,

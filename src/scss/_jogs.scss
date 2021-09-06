@@ -29,6 +29,9 @@
       margin: 0 45px 0 15px;
       border-radius: 11px;
       border: solid 1px #979797;
+      &:focus {
+        outline: none;
+      }
     }
   }
   &__list {

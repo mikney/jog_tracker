@@ -95,6 +95,13 @@ const Jogs = ({isFiltered}) => {
 
 
   useEffect(() => {
+    if (startDate === null  && endDate === null) {
+      setResp(jogs)
+      const paginated = pagination(jogs)
+      setState(paginated)
+      setArrayShow(paginated[0])
+      return;
+    }
     const filtered = response.filter(obj => {
       if ((new Date(0).setSeconds(obj.date) - new Date(startDate)) > 0) {
         if ((new Date(0).setSeconds(obj.date) - new Date(endDate)) < 0) return true;
@@ -108,7 +115,7 @@ const Jogs = ({isFiltered}) => {
 
   if (isLoading) {
     return <div className='jogs__upload'>
-      <h1>Загрузка...</h1>
+      <h1>Loading...</h1>
     </div>
   }
 

@@ -25,7 +25,7 @@ export const logIn =  () => {
 export const getCurrentUser = () => {
   return async dispatch => {
     try {
-      const response = await axios.get('https://jogtracker.herokuapp.com/api/v1/data/sync',
+      const response = await axios.get('https://jogtracker.herokuapp.com/api/v1/auth/user',
         {
           headers: {
             Authorization: 'Bearer eb8cdf9e61521369da24ab55f0095f5da870881990d9b75daefef50333178daf',
