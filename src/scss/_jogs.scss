@@ -1,7 +1,7 @@
 @import "variables";
 
 .jogs {
-
+  
   &__upload {
     position: fixed;
     top: 50%;
@@ -16,8 +16,6 @@
     align-items: center;
     height: 60px;
     background-color: #eaeaea;
-    position: fixed;
-    z-index: 900;
     width: 100%;
     label {
       font-size: 13px;
@@ -35,8 +33,12 @@
     }
   }
   &__list {
-    height: calc(100vh - 116px);
+    position: relative;
+    height: calc(100vh - #{$heightHeader});
     overflow: auto;
+    &-filtered {
+      height: calc(100vh - #{$heightHeaderFiltered});
+    }
     hr {
       display: none;
 
@@ -103,7 +105,9 @@
       }
     }
     &__list {
-      height: calc(100vh - #{$heightHeader});
+      &-filtered {
+        height: calc(100vh - #{$heightHeaderMobileFiltered});
+      }
       hr {
         display: block;
         margin: 0;
@@ -115,6 +119,11 @@
     &__add {
       bottom: 30px;
       right: 30px;
+      &-first {
+        top: 50%;
+        right: 50%;
+      }
+
     }
   }
 

@@ -52,9 +52,11 @@ const Jogs = ({isFiltered}) => {
     jogs: state.jogs.jogs,
     isLoading: state.jogs.isLoading
   }))
-  useEffect(async () => {
+  useEffect( () => {
     dispatch(getJogs())
   }, [])
+
+
   useEffect(() => {
     setResp(jogs)
     const paginated = pagination(jogs)
@@ -62,7 +64,12 @@ const Jogs = ({isFiltered}) => {
     setArrayShow(paginated[0])
   }, [jogs])
 
-
+  useEffect(() => {
+    if(!isFiltered) {
+      setStartDate(null)
+      setEndDate(null)
+    }
+  }, [isFiltered])
 
   useEffect(() => {
 
@@ -74,10 +81,7 @@ const Jogs = ({isFiltered}) => {
           setCurrentPage(currentPage + 1)
 
         }
-        console.log(arrayShow)
-        console.log(state)
       }
-
     }
     if (observer && !isLoading) {
       observer.current = new IntersectionObserver(callback)
@@ -113,6 +117,7 @@ const Jogs = ({isFiltered}) => {
   }, [startDate, endDate])
 
 
+
   if (isLoading) {
     return <div className='jogs__upload'>
       <h1>Loading...</h1>
@@ -121,7 +126,7 @@ const Jogs = ({isFiltered}) => {
 
 
   return (
-    <div className='jogs'>
+    <div className={'jogs'}>
       {isFiltered && <div className='jogs__filter'>
         <label htmlFor="date-from">Date from</label>
         <DatePicker
@@ -138,7 +143,9 @@ const Jogs = ({isFiltered}) => {
           dateFormat='dd.MM.yyyy'
         />
       </div>}
-      <div  className="jogs__list">
+      <div  className={classname('jogs__list', {
+        'jogs__list-filtered': isFiltered
+      })}>
         { !arrayShow ? <div className='jogs__list_empty'>
             <img src={noJogs} alt=""/>
             <h2>Nothign is there</h2>
@@ -156,7 +163,7 @@ const Jogs = ({isFiltered}) => {
           </div>
         })
         }
-        <div style={{height: "10px"}} ref={lastElem} />
+        <div style={{height: "100px"}} ref={lastElem} />
       </div>
       <div onClick={ () => history.push("/add")} className={classname('jogs__add', {
         'jogs__add-first': !jogs.length

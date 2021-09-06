@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import Jogs from "./pages/Jogs";
 import {Route, Switch, useLocation,  Redirect} from "react-router-dom";
 import SignIn from "./pages/SignIn";
@@ -9,7 +9,6 @@ import {getCurrentUser, logIn} from "./actions/user";
 import {setIsLogin} from "./reducers/userReducer";
 import Contacts from "./pages/Contacts";
 import Header from "./components/Header";
-import axios from "axios";
 import cookie from 'js-cookie'
 
 
@@ -34,10 +33,8 @@ function App() {
     if(token) {
       dispatch(setIsLogin(true))
       dispatch(getCurrentUser())
-      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
   },[])
-
 
 
   React.useEffect(() => {

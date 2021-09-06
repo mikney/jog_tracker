@@ -89,7 +89,7 @@
           nav {
             position: fixed;
             width: 100vw;
-            height: calc(100vh - #{$heightHeader});
+            height: calc(100vh - #{$heightHeaderMobile});
             background-color: white;
             z-index: 1000;
             bottom: 0;

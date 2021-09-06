@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import cancelIcon from '../assets/img/cancel.svg'
 import { useFormik } from 'formik';
-import axios from "axios";
+import axios from "../config/axios";
 import { useHistory } from "react-router-dom";
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {format} from "date-fns";
+import * as Yup from 'yup';
 
 
 
@@ -18,15 +19,10 @@ const AddJog = () => {
     user_id: state.user.currentUser.id
   }))
 
-  useEffect(() => {
-
-  }, [id])
-
-
   const changeJog = jogs.filter(obj => {
     return obj.id === +id
   })[0]
-  console.log(user_id)
+
   const initialValues= {
     id: id,
     user_id: user_id ? user_id : '' ,
@@ -34,39 +30,40 @@ const AddJog = () => {
     date: changeJog?.date ? format(new Date(0).setSeconds(changeJog.date), 'dd.MM.yyyy') : '',
     time: changeJog?.time ? changeJog.time : '',
   }
+
+  const validation = Yup.object().shape({
+    distance: Yup.string()
+      .required('Required!'),
+    time: Yup.string()
+      .required('Required!'),
+    date: Yup.string().length(10, 'Invalid date').required('Required!'),
+  });
+
+
   const formik = useFormik({
     initialValues,
+    validationSchema: validation,
     onSubmit: async values => {
       if (id) {
         try {
-          await axios.put('https://jogtracker.herokuapp.com/api/v1/data/jog', {
+          await axios.put('data/jog', {
               jog_id: id,
               user_id: user_id,
               date: values.date,
               time: values.time,
               distance: values.distance
-            },
-            {
-              headers: {
-                Authorization: 'Bearer eb8cdf9e61521369da24ab55f0095f5da870881990d9b75daefef50333178daf'
-              }}
-          )
+            })
         } catch (e) {
           console.log(e.response.data.error_message.error)
         }
 
       } else {
         try {
-          await axios.post('https://jogtracker.herokuapp.com/api/v1/data/jog', {
+          await axios.post('data/jog', {
               date: values.date,
               time: values.time,
               distance: values.distance
-            },
-            {
-              headers: {
-                Authorization: 'Bearer eb8cdf9e61521369da24ab55f0095f5da870881990d9b75daefef50333178daf'
-              }}
-          )
+            })
         } catch (e) {
           console.log(e.response.data.error_message.error)
         }
@@ -92,6 +89,9 @@ const AddJog = () => {
           onChange={formik.handleChange}
           value={formik.values.distance}
         />
+        {formik.errors.distance && formik.touched.distance ? (
+          <div className='form_error'>{formik.errors.distance}</div>
+        ) : null}
         <label htmlFor="time">Time</label>
 
         <input
@@ -100,6 +100,9 @@ const AddJog = () => {
           onChange={formik.handleChange}
           value={formik.values.time}
         />
+        {formik.errors.time && formik.touched.time ? (
+          <div className='form_error'>{formik.errors.time}</div>
+        ) : null}
         <label htmlFor="date">Date</label>
 
         <input
@@ -108,6 +111,9 @@ const AddJog = () => {
           onChange={formik.handleChange}
           value={formik.values.date}
         />
+        {formik.errors.date && formik.touched.date ? (
+          <div className='form_error'>{formik.errors.date}</div>
+        ) : null}
         <button type='submit'>Save</button>
       </form>
     </div>
