@@ -44,7 +44,6 @@ const Jogs = ({isFiltered}) => {
 
   const [response, setResp] = useState([])
 
-  const lastElem = useRef(null)
   const observer = useRef(null)
 
   const dispatch = useDispatch()
@@ -81,7 +80,7 @@ const Jogs = ({isFiltered}) => {
     }
     if (observer && !isLoading) {
       observer.current = new IntersectionObserver(callback)
-      observer.current.observe(lastElem.current)
+      observer.current.observe(document.querySelector('.jogs__list').lastChild)
     }
 
   },[arrayShow])
@@ -156,7 +155,6 @@ const Jogs = ({isFiltered}) => {
           </div>
         })
         }
-        <div style={{height: "10px"}} ref={lastElem} />
       </div>
       <div onClick={ () => history.push("/add")} className={classname('jogs__add', {
         'jogs__add-first': !jogs.length
